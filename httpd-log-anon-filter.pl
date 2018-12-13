@@ -19,11 +19,16 @@
 # You should have received a copy of the GNU General Public License along with this program.  If not, see
 # <http://www.gnu.org/licenses/>.
 #
-use strict; use warnings; use Digest::MD5 qw(md5); my $logfile = shift @ARGV || die 'no output file given';
-open my $log_fh, '>>', $logfile or die "can't open `$logfile': $!\n"; $log_fh->autoflush();
+use strict; 
+use warnings; 
+use Digest::MD5 qw(md5); 
+my $logfile = shift @ARGV || die 'no output file given';
+open my $log_fh, '>>', $logfile or die "can't open `$logfile': $!\n"; 
+$log_fh->autoflush();
 # get random MD5 salt this will give a new salt on every invocation, meaning that the hashes are 'new' after
 # logrotate's daily 'apache reload'
-my $salt = chr(rand(256)) . chr(rand(256)) . chr(rand(256)) . chr(rand(256)); while (my $line = <STDIN>) {
+my $salt = chr(rand(256)) . chr(rand(256)) . chr(rand(256)) . chr(rand(256)); 
+while (my $line = <STDIN>) {
     my ($ip, $tail) = split /\s+/, $line, 2;
     my $newIp = '';
     # convert salt plus hostname field contents to md5 hash
@@ -42,11 +47,9 @@ my $salt = chr(rand(256)) . chr(rand(256)) . chr(rand(256)) . chr(rand(256)); wh
         my @octets = split /\./, $ip;
         foreach (@octets) {
                 if($i < 3)      {
-                        #print "$_\n";
                         $newIp = $newIp . $octets[$i].'.';
                         $i++;
                 }
-
         }
         my $randOctet = join( '.', unpack( 'C1', $md5));
         $newIp = $newIp . $randOctet;
