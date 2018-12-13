@@ -4,6 +4,11 @@ httpd-log-anon-filter
 about
 -----
 
+This is a fork of the http-log-anon-filter.pl from Christian Garbs <mitch@cgarbs.de>. I liked the script from
+him, but i doesnt fit all my needs, so i forked his script. The fork just randomize the last octet of the IPv4
+Adress and not the complete Adress. The Goal was that one can anonymous the IP of the Webserver visitors BUT also Scripts like Awstats have more accuracy about the GeoLocation from the Visitor.
+
+-----
 httpd-log-anon-filter is an anonymizing log filter for httpd logs.
 
 It is used to change the IP address/hostname field of webserver logs
