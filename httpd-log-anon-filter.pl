@@ -25,7 +25,7 @@ open my $log_fh, '>>', $logfile or die "can't open `$logfile': $!\n"; $log_fh->a
 # logrotate's daily 'apache reload'
 my $salt = chr(rand(256)) . chr(rand(256)) . chr(rand(256)) . chr(rand(256)); while (my $line = <STDIN>) {
     my ($ip, $tail) = split /\s+/, $line, 2;
-        my $newIp = '';
+    my $newIp = '';
     # convert salt plus hostname field contents to md5 hash
     my $md5 = md5( $salt . $ip );
 
@@ -50,7 +50,6 @@ my $salt = chr(rand(256)) . chr(rand(256)) . chr(rand(256)) . chr(rand(256)); wh
         }
         my $randOctet = join( '.', unpack( 'C1', $md5));
         $newIp = $newIp . $randOctet;
-        #print "$newIp $tail"; $ip = join( '.', unpack( 'C4', $md5));
         # generate IPs in local pool (use 10.0.0.0/8 because it's the biggest local range) $ip = '10.' .
         # join( '.', unpack( 'C3', $md5));
     }
