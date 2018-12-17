@@ -36,7 +36,7 @@ while (my $line = <STDIN>) {
 
     if ($ip =~ /:/) {
         # host field looks like IPv6: convert complete md5 hash to an IPv6 address
-        $ip = join( ':', unpack( '(H4)8', $md5));
+        $newIp = join( ':', unpack( '(H4)8', $md5));
         # generate "documentation" addresses: 2001:db8::/32 $ip = '2001:db8:' . join( ':', unpack( '(H4)6',
         # $md5)); generate discard addresses? 0100::/64 $ip = '0100::' . join( ':', unpack( '(H4)4', $md5));
     }
