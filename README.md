@@ -10,6 +10,11 @@ Adress and not the complete Adress. The Goal was that one can anonymize the IP o
 
 the original project page can be visited here: https://github.com/mmitch/httpd-log-anon-filter 
 
+Usage: like mentioned in the original readme. But u can also use thinks like:
+```
+cat access.log | /path/to/binary/httpd-log-anon-filter.pl anonymized_access.log
+```
+
 -----
 httpd-log-anon-filter is an anonymizing log filter for httpd logs.
 
